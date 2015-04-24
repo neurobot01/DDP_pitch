@@ -1,0 +1,59 @@
+Impact of diet on chick weight over time
+========================================================
+author: Ben Turner
+date: 4/23/15
+
+Overview
+========================================================
+
+- Everyone knows that diet is an important determinant of weight.
+
+- However, no one knows whether this is true for chicks as well, nor how it depends on time!
+
+- Here, we see a glimpse of this phenomenon.
+
+- However, the full app is needed to really answer this important question.
+
+Current dataset
+========================================================
+
+Using the ChickWeight dataset available in the datasets library, I'm shedding light on this important problem. See the summary below:
+
+```{r, echo=FALSE}
+summary(ChickWeight)
+```
+
+Detail on dataset
+========================================================
+
+The number of chicks in this dataset is:
+```{r, echo=FALSE}
+length(levels(ChickWeight$Chick))
+``` 
+
+These chicks are divided into the following number of diet groups:
+```{r, echo=FALSE}
+length(levels(ChickWeight$Diet))
+```
+
+And measured on the following number of timepoints:
+```{r, echo=FALSE}
+length(unique(ChickWeight$Time))
+```
+
+Does diet have an impact over time?
+========================================================
+
+Here is where the groups started:
+
+```{r, echo=FALSE}
+library(lattice)
+histogram( ~ weight | Diet, data = subset(ChickWeight, Time==0))
+```
+***
+And here is where they ended up:
+
+```{r, echo=FALSE}
+library(lattice)
+histogram( ~ weight | Diet, data = subset(ChickWeight, Time==21))
+```
